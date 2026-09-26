@@ -120,8 +120,8 @@
   - [ ] 사용자 음식과 공공 음식 DB의 테이블 구성
 
 ### Day 2: 스키마 구현, 대량 데이터 생성, InnoDB 구조
-- [ ] Docker로 MySQL 8 띄우고 `innodb_buffer_pool_size`를 256MB로 설정
-- [ ] Node.js, TypeScript, Kysely(또는 mysql2) 프로젝트 세팅
+- [x] Docker로 MySQL 8 띄우고 `innodb_buffer_pool_size`를 256MB로 설정
+- [x] Node.js, TypeScript, Kysely(또는 mysql2) 프로젝트 세팅
 - [ ] 스키마 DDL 작성하고 적용
 - [ ] 사용자 10만 명, 식사 기록 약 1,000만 건 생성 (헤비 유저 10% 분포)
 - [ ] `LOAD DATA`와 multi-row INSERT 속도 비교해서 기록

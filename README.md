@@ -5,3 +5,12 @@
 ### 공부
 
 - [DB 공부 플랜](./db-study-plan.md)
+
+### 실행
+
+```bash
+cp .env.example .env
+docker compose up -d --wait   # MySQL 8.4 (localhost:3307, buffer pool 256MB)
+pnpm install
+pnpm start:dev                # GET localhost:3000/health 로 DB 연결 확인
+```
