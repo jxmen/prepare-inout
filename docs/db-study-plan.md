@@ -111,13 +111,13 @@
 ### Day 1: 요구사항을 ERD로 옮기기, 정규화
 - [x] 워크로드 Q1~Q4를 쿼리 형태로 적기
 - [x] 1NF~3NF, BCNF, 함수 종속 정리
-- [ ] ERD 초안 그리기
+- [x] ERD 초안 그리기
 - [ ] `DECISIONS.md` 만들고 설계 논점 5개에 대안과 선택 이유 적기
-  - [ ] 영양소 저장 방식 (컬럼형과 행형)
-  - [ ] 기록 시점 스냅샷
+  - [x] 영양소 저장 방식 (컬럼형과 행형)
+  - [x] 기록 시점 스냅샷
   - [ ] 날짜 기준 (`eaten_at`, `local_date`, timezone 변경)
-  - [ ] `meal_items`의 `user_id` 중복 저장
-  - [ ] 사용자 음식과 공공 음식 DB의 테이블 구성
+  - [x] `meal_items`의 `user_id` 중복 저장
+  - [x] 사용자 음식과 공공 음식 DB의 테이블 구성
 
 ### Day 2: 스키마 구현, 대량 데이터 생성, InnoDB 구조
 - [x] Docker로 MySQL 8 띄우고 `innodb_buffer_pool_size`를 256MB로 설정
