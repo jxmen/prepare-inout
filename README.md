@@ -1,10 +1,10 @@
 # 인아웃 과제/면접 대비 연습용 레포
 
-- [JD](./jd.md)
+- [JD](./docs/jd.md)
 
 ### 공부
 
-- [DB 공부 플랜](./db-study-plan.md)
+- [DB 공부 플랜](./docs/db-study-plan.md)
 
 ### 실행
 
