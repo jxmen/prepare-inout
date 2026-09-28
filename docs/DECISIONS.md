@@ -62,7 +62,7 @@ where member_id not in (
 
 - 영양소 저장 방식, 스냅샷
   - food에 중량과 영양소를 base_weight와 함께 저장하되, meal_items에도 중량과 영양소 스냅샷 따로 저장 
-- [ ] 날짜 기준 고민 필요
+- member에 timezone 저장
 - meal_items에는 member_id 중복 저장X. meal_log에만 저장
 - 사용자 음식과 공공 음식 DB
   - 여기선 공공 음식 DB 따로 구축 X

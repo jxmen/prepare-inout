@@ -112,10 +112,10 @@
 - [x] 워크로드 Q1~Q4를 쿼리 형태로 적기
 - [x] 1NF~3NF, BCNF, 함수 종속 정리
 - [x] ERD 초안 그리기
-- [ ] `DECISIONS.md` 만들고 설계 논점 5개에 대안과 선택 이유 적기
+- [x] `DECISIONS.md` 만들고 설계 논점 5개에 대안과 선택 이유 적기
   - [x] 영양소 저장 방식 (컬럼형과 행형)
   - [x] 기록 시점 스냅샷
-  - [ ] 날짜 기준 (`eaten_at`, `local_date`, timezone 변경)
+  - [x] 날짜 기준 (`eaten_at`, `local_date`, timezone 변경)
   - [x] `meal_items`의 `user_id` 중복 저장
   - [x] 사용자 음식과 공공 음식 DB의 테이블 구성
 
