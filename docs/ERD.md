@@ -20,7 +20,7 @@ erDiagram
         varchar id PK
         varchar name
         varchar timezone
-        boolean deleted
+        datetime deleted_at "NULL 허용"
     }
 
     food {
@@ -35,15 +35,15 @@ erDiagram
 
     meal_log {
         varchar id PK
-        varchar member_id FK
+        varchar member_id
         enum type "breakfast, lunch, dinner, snack"
         date date
     }
 
     meal_items {
         varchar id PK
-        varchar meal_log_id FK, UK "(meal_log_id, food_id) UNIQUE"
-        varchar food_id FK, UK
+        varchar meal_log_id UK "(meal_log_id, food_id) UNIQUE"
+        varchar food_id UK
         float food_weight "g 단위"
         float carbs "스냅샷"
         float protein "스냅샷"
@@ -62,9 +62,9 @@ CREATE TABLE member (
     id         VARCHAR(36)  NOT NULL,
     name       VARCHAR(255) NOT NULL,
     timezone   VARCHAR(64)  NOT NULL COMMENT 'IANA timezone (예: Asia/Seoul)',
-    deleted    BOOLEAN      NOT NULL DEFAULT FALSE,
     created_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME     NULL,
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 ```
@@ -95,11 +95,10 @@ CREATE TABLE meal_log (
     id         VARCHAR(36) NOT NULL,
     member_id  VARCHAR(36) NOT NULL,
     type       ENUM ('breakfast', 'lunch', 'dinner', 'snack') NOT NULL,
-    date       DATE        NOT NULL COMMENT '특정 날짜 (2026-09-27). timezone 어떻게 할건지 정책 필요',
+    date       DATE        NOT NULL COMMENT '식사 날짜 (예: 2026-09-27). member.timezone 기준으로 계산해 저장한다.',
     created_at DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (member_id) REFERENCES member (id)
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 ```
 
@@ -120,8 +119,6 @@ CREATE TABLE meal_items (
     created_at  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE KEY uk_meal_items_meal_log_food (meal_log_id, food_id),
-    FOREIGN KEY (meal_log_id) REFERENCES meal_log (id),
-    FOREIGN KEY (food_id) REFERENCES food (id)
+    UNIQUE KEY uk_meal_items_meal_log_food (meal_log_id, food_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 ```
