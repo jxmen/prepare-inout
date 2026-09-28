@@ -1,7 +1,8 @@
-import { Global, Inject, Module, OnApplicationShutdown } from '@nestjs/common';
+import { Global, Inject, Module, OnApplicationShutdown, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Kysely, MysqlDialect } from 'kysely';
 import { createPool } from 'mysql2';
+import { createTablesIfNotExist } from './schema.js';
 import type { DB } from './types.js';
 
 export const KYSELY = Symbol('KYSELY');
@@ -30,8 +31,12 @@ export const KYSELY = Symbol('KYSELY');
   ],
   exports: [KYSELY],
 })
-export class DatabaseModule implements OnApplicationShutdown {
+export class DatabaseModule implements OnModuleInit, OnApplicationShutdown {
   constructor(@Inject(KYSELY) private readonly db: Kysely<DB>) {}
+
+  async onModuleInit() {
+    await createTablesIfNotExist(this.db);
+  }
 
   async onApplicationShutdown() {
     await this.db.destroy();
